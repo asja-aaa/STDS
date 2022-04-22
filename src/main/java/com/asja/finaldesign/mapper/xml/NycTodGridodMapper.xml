@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asja.finaldesign.mapper.NycTodGridodMapper">
+<resultMap id="odHeatData" type="com.asja.finaldesign.common.dto.ODInOutHeatData">
+    <result property="originRowId" column="origin_row_id"/>
+    <result property="originColId" column="origin_column_id"/>
+    <result property="destinationRowId" column="destination_row_id"/>
+    <result property="destinationColId" column="destination_column_id"/>
+    <result property="flow" column="flow"/>
+    <result property="coordinates" column="coordinates"/>
+</resultMap>
+
+    <select id="getODInOutHeatData" resultMap="odHeatData">
+        SELECT  od.origin_row_id,origin_column_id,od.destination_row_id,od.destination_column_id,od.flow,geo.coordinates
+        FROM (SELECT * FROM `nyc_tod_gridod` WHERE
+            dyna_id = #{dynaId} AND
+            <if test = "inOrOut==0">
+                destination_row_id =#{rowId} AND destination_column_id = #{colId}
+                ) as od  LEFT JOIN nyc_tod_geo as  geo on
+                od.origin_row_id = geo.row_id and od.origin_column_id = geo.column_id order by flow desc
+            </if>
+            <if test = "inOrOut==1">
+                origin_row_id =#{rowId} AND origin_column_id = #{colId}
+                ) as od  LEFT JOIN nyc_tod_geo as  geo on
+                od.destination_row_id = geo.row_id and od.destination_column_id = geo.column_id order by flow desc
+            </if>
+
+    </select>
+
+    <select id="getAllFlow" resultMap="odHeatData">
+
+        <if test = "inOrOut==0">
+            SELECT
+            -1 as origin_row_id,
+            -1 as origin_column_id, destination_row_id,destination_column_id,
+            flow,
+            coordinates
+            FROM
+            ( SELECT destination_row_id, destination_column_id, SUM( flow ) AS flow FROM nyc_tod_gridod WHERE dyna_id = #{dynaId} GROUP BY destination_row_id, destination_column_id ) AS od
+            JOIN nyc_tod_geo AS geo ON od.destination_row_id = geo.row_id
+            AND od.destination_column_id = geo.column_id
+        </if>
+        <if test = "inOrOut==1">
+            SELECT
+            origin_row_id,
+            origin_column_id,- 1 AS destination_row_id,- 1 AS destination_column_id,
+            flow,
+            coordinates
+            FROM
+            ( SELECT origin_row_id, origin_column_id, SUM( flow ) AS flow FROM nyc_tod_gridod WHERE dyna_id = #{dynaId} GROUP BY origin_row_id, origin_column_id ) AS od
+            JOIN nyc_tod_geo AS geo ON od.origin_row_id = geo.row_id
+            AND od.origin_column_id = geo.column_id
+        </if>
+        ORDER BY
+        flow DESC
+    </select>
+</mapper>

@@ -1,0 +1,25 @@
+server:
+  port: 7001
+
+spring:
+  application:
+    name: spatio-temporal-data-system
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/nyc_tod?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: asja
+    password: '082264'
+
+mybatis-plus:
+  mapper-locations: classpath:com/asja/finaldesign/mapper/xml/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+task:
+  pool:
+    namePrefix: stds-default-thread
+    corePoolSize: 5 #设置核心线程数
+    maxPoolSize: 20  #设置最大线程数
+    keepAliveSeconds: 300 #设置线程活跃时间（秒）
+    queueCapacity: 50 #设置队列容量
