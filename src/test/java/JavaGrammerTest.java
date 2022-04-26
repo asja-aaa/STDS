@@ -14,15 +14,19 @@ import java.util.stream.Collectors;
 
 public class JavaGrammerTest{
 
-    H3Service h3Service;
 
     @Test
     public  void H3() throws IOException, PentagonEncounteredException {
-        GeoJson hexagonsGeoJson = h3Service.getHexagonsGeoJson(100, 20, 13, 8);
-
-        System.out.println(
-                JSON.toJSON(hexagonsGeoJson)
-        );
+            H3Core h3Core =H3Core.newInstance();
+            List<GeoCoord> list =new ArrayList<GeoCoord>() {{
+                add(new GeoCoord(40.816700,-73.963400));
+                add(new GeoCoord(40.799000,-73.917400));
+                add(new GeoCoord(40.710600,-74.039300));
+                add(new GeoCoord(40.692400,-73.993600));
+            }};
+        List<Long> polyfill = h3Core.polyfill(list, null, 10);
+        List<List<List<GeoCoord>>> lists = h3Core.h3SetToMultiPolygon(polyfill, true);
+        polyfill.forEach(System.out::println);
 
 
     }

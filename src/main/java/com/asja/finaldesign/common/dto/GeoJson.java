@@ -4,6 +4,7 @@ import com.asja.finaldesign.common.constant.COLOR;
 import com.asja.finaldesign.common.dto.geo.Feature;
 import com.asja.finaldesign.common.dto.geo.Geometry;
 import com.asja.finaldesign.common.dto.geo.Properties;
+import com.uber.h3core.util.GeoCoord;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -64,6 +65,44 @@ public class GeoJson {
         geoJson.setFeatures(featureList);
         return geoJson;
 
+    }
+
+
+    /**
+     * geoCoords 转 GeoJoson
+     * @param geoCoords
+     * @return
+     */
+    public static GeoJson  geoCoordsCovToGeoJson(List<List<GeoCoord>> geoCoords){
+        GeoJson geoJson = new GeoJson();
+        List<Feature> featureList = new ArrayList<>();
+
+        geoCoords.stream().filter(i->i!=null).forEach(polygons->{
+            Feature feature = new Feature();
+            Geometry<List<List<Float>>> geometry = new Geometry<>();
+            geometry.setType("Polygon");
+            List<List<Float>> coord = new ArrayList<>();
+            polygons.forEach(item->{
+                List<Float> li = new ArrayList<Float>(){{
+                    add((float) item.lng);
+                    add((float) item.lat);
+                }};
+                coord.add(li);
+            });
+            coord.add(new ArrayList<Float>(){{
+                add((float) polygons.get(0).lng);
+                add((float) polygons.get(0).lat);
+            }});
+            geometry.setCoordinates(new ArrayList<List<List<Float>>>(){{
+                add(coord);
+            }});
+
+            feature.setGeometry(geometry);
+            feature.setProperties(new Properties().setFillOpacity(0.0f));
+            featureList.add(feature);
+        });
+        geoJson.setFeatures(featureList);
+        return  geoJson;
     }
 
 }

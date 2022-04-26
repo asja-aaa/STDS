@@ -112,6 +112,16 @@ public class NycTodGridodController {
         return JSON.toJSONString(CommonResult.success(hexagonsGeoJson));
     }
 
+    @GetMapping("divide")
+    public String H3PolygonDivide(@RequestParam(value="polygons",required = false,
+            defaultValue = "40.8167;-73.9634,40.7990;-73.9174,40.6924;-73.9936,40.7106;-74.0393") List<String> polygons,
+                                  @RequestParam(value = "layer",required = false,defaultValue = "9") Integer layer
+                                  ){
+            GeoJson geoJson = h3Service.getRegionDivideHexagonsGeoJson(polygons,layer);
+            return JSON.toJSONString(CommonResult.success(geoJson));
+
+    }
+
 
 
 

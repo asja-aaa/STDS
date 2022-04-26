@@ -6,14 +6,18 @@ import com.asja.finaldesign.common.dto.geo.Geometry;
 import com.asja.finaldesign.common.dto.geo.Properties;
 import com.uber.h3core.H3Core;
 import com.uber.h3core.util.GeoCoord;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executor;
 import java.util.stream.Collectors;
 
@@ -23,6 +27,7 @@ import java.util.stream.Collectors;
  * @Create 2022-04-21 17:05
  */
 @Service
+@Slf4j
 public class H3Service {
 
     @Autowired
@@ -39,7 +44,7 @@ public class H3Service {
      * @param zoom  层级 1-15
      * @return
      */
-    public  long getCenterHexagon(double lng,double lat,int zoom){
+    public long getCenterHexagon(double lng,double lat,int zoom){
         return h3Core.geoToH3(lat,lng,zoom);
     }
 
@@ -53,7 +58,7 @@ public class H3Service {
     }
 
     /**
-     *
+     * 获取一个点周围的六边形网格
      * @param lng
      * @param lat
      * @param zoom
@@ -63,7 +68,7 @@ public class H3Service {
     public  GeoJson getHexagonsGeoJson(double lng,double lat,int zoom,int layer){
         long h3Cen = h3Core.geoToH3(lat, lng, zoom);
         List<List<Long>> kRingDistances = h3Core.kRingDistances(h3Cen, layer);
-        List<List<GeoCoord>> ans = new ArrayList<>();
+        List<List<GeoCoord>> ans = Collections.synchronizedList(new ArrayList<>());
 
         // 异步操作
         CompletableFuture[] completableFutures = kRingDistances.stream().map(item -> CompletableFuture.runAsync(() -> {
@@ -72,37 +77,34 @@ public class H3Service {
         }, executor)).toArray(CompletableFuture[]::new);
         CompletableFuture.allOf(completableFutures).join();
 
-        GeoJson geoJson = new GeoJson();
-        List<Feature> featureList = new ArrayList<>();
-
-        ans.forEach(polygons->{
-            Feature feature = new Feature();
-
-            Geometry<List<List<Float>>> geometry = new Geometry<>();
-            geometry.setType("Polygon");
-            List<List<Float>> coord = new ArrayList<>();
-            polygons.forEach(item->{
-                List<Float> li = new ArrayList<Float>(){{
-                    add((float) item.lng);
-                    add((float) item.lat);
-                }};
-                coord.add(li);
-            });
-            coord.add(new ArrayList<Float>(){{
-                add((float) polygons.get(0).lng);
-                add((float) polygons.get(0).lat);
-            }});
-            geometry.setCoordinates(new ArrayList<List<List<Float>>>(){{
-                add(coord);
-            }});
-
-            feature.setGeometry(geometry);
-            feature.setProperties(new Properties().setFillOpacity(0.0f));
-            featureList.add(feature);
-        });
-        geoJson.setFeatures(featureList);
+        GeoJson geoJson = GeoJson.geoCoordsCovToGeoJson(ans);
         return  geoJson;
 
+    }
 
+    /**
+     * 将区域划分为六边形网格
+     * @param polygons
+     * @param layer
+     * @return
+     */
+    public GeoJson getRegionDivideHexagonsGeoJson(List<String> polygons,int layer){
+
+        List<GeoCoord> list = polygons.stream().map(polygon -> {
+            String[] split = polygon.split(";");
+            return new GeoCoord(Double.valueOf(split[0]), Double.valueOf(split[1]));
+        }).collect(Collectors.toList());
+        List<Long> hexagons = h3Core.polyfill(list, null, layer);
+
+        List<List<GeoCoord>> ans = Collections.synchronizedList(new ArrayList<>());
+        // 异步操作
+        CompletableFuture[] completableFutures = hexagons.stream().map(item -> CompletableFuture.supplyAsync(() ->
+                        getHexagonCoordsByH3Index(item)
+                , executor).thenAccept(ans::add)).toArray(CompletableFuture[]::new);
+
+        CompletableFuture.allOf(completableFutures).join();
+
+        GeoJson geoJson = GeoJson.geoCoordsCovToGeoJson(ans);
+        return  geoJson;
     }
 }

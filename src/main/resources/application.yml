@@ -2,6 +2,8 @@ server:
   port: 7001
 
 spring:
+  profiles:
+    active: dev
   application:
     name: spatio-temporal-data-system
 
@@ -13,8 +15,7 @@ spring:
 
 mybatis-plus:
   mapper-locations: classpath:com/asja/finaldesign/mapper/xml/*.xml
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 
 task:
   pool:
