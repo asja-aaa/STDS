@@ -27,5 +27,12 @@ public class Properties {
 
     private int destColId;
 
+    /**
+     * 在不区分 出发地与目的地时 使用originIdx
+     */
+    private long originIdx;
+
+    private long destIdx;
+
     private int flow;
 }

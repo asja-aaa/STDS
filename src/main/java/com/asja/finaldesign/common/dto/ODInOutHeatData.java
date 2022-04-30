@@ -16,6 +16,9 @@ public class ODInOutHeatData {
     private Integer destinationRowId;
     private Integer destinationColId;
 
+    private Long originIdx;
+    private Long destIdx;
+
     private Integer flow;
     private String coordinates;
 }

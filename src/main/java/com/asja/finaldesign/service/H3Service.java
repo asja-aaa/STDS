@@ -1,25 +1,22 @@
 package com.asja.finaldesign.service;
 
 import com.asja.finaldesign.common.dto.GeoJson;
-import com.asja.finaldesign.common.dto.geo.Feature;
-import com.asja.finaldesign.common.dto.geo.Geometry;
-import com.asja.finaldesign.common.dto.geo.Properties;
+import com.asja.finaldesign.common.dto.geo.Polygon;
 import com.uber.h3core.H3Core;
 import com.uber.h3core.util.GeoCoord;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executor;
 import java.util.stream.Collectors;
+
+import static com.asja.finaldesign.common.dto.geo.Polygon.genPolygon;
 
 /**
  * @Description
@@ -68,11 +65,11 @@ public class H3Service {
     public  GeoJson getHexagonsGeoJson(double lng,double lat,int zoom,int layer){
         long h3Cen = h3Core.geoToH3(lat, lng, zoom);
         List<List<Long>> kRingDistances = h3Core.kRingDistances(h3Cen, layer);
-        List<List<GeoCoord>> ans = Collections.synchronizedList(new ArrayList<>());
+        List<Polygon> ans = Collections.synchronizedList(new ArrayList<>());
 
         // 异步操作
         CompletableFuture[] completableFutures = kRingDistances.stream().map(item -> CompletableFuture.runAsync(() -> {
-            List<List<GeoCoord>> lists = item.stream().map(this::getHexagonCoordsByH3Index).collect(Collectors.toList());
+            List<Polygon> lists = item.stream().map(i-> genPolygon(getHexagonCoordsByH3Index(i),i)).collect(Collectors.toList());
             ans.addAll(lists);
         }, executor)).toArray(CompletableFuture[]::new);
         CompletableFuture.allOf(completableFutures).join();
@@ -90,21 +87,30 @@ public class H3Service {
      */
     public GeoJson getRegionDivideHexagonsGeoJson(List<String> polygons,int layer){
 
+
+
+        List<Polygon> ans = getRegionDivideHexagons(polygons,layer);
+
+        GeoJson geoJson = GeoJson.geoCoordsCovToGeoJson(ans);
+        return  geoJson;
+    }
+
+    public List<Polygon> getRegionDivideHexagons(List<String> polygons,int layer){
         List<GeoCoord> list = polygons.stream().map(polygon -> {
             String[] split = polygon.split(";");
             return new GeoCoord(Double.valueOf(split[0]), Double.valueOf(split[1]));
         }).collect(Collectors.toList());
         List<Long> hexagons = h3Core.polyfill(list, null, layer);
 
-        List<List<GeoCoord>> ans = Collections.synchronizedList(new ArrayList<>());
+        List<Polygon> ans = Collections.synchronizedList(new ArrayList<>());
         // 异步操作
         CompletableFuture[] completableFutures = hexagons.stream().map(item -> CompletableFuture.supplyAsync(() ->
-                        getHexagonCoordsByH3Index(item)
+                        genPolygon(getHexagonCoordsByH3Index(item),item)
                 , executor).thenAccept(ans::add)).toArray(CompletableFuture[]::new);
 
         CompletableFuture.allOf(completableFutures).join();
-
-        GeoJson geoJson = GeoJson.geoCoordsCovToGeoJson(ans);
-        return  geoJson;
+        return ans;
     }
+
+
 }

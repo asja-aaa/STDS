@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asja.finaldesign.mapper.NycOctoberRecMapper">
+    <resultMap id="odHeatData" type="com.asja.finaldesign.common.dto.ODInOutHeatData">
+        <result property="originRowId" column="origin_row_id"/>
+        <result property="originColId" column="origin_column_id"/>
+        <result property="destinationRowId" column="destination_row_id"/>
+        <result property="destinationColId" column="destination_column_id"/>
+        <result property="originIdx" column="origin_idx"/>
+        <result property="destIdx" column="dest_idx"/>
+        <result property="flow" column="flow"/>
+        <result property="coordinates" column="coordinates"/>
+    </resultMap>
+
+    <select id="getHexagonAllFlow" resultMap="odHeatData">
+        SELECT
+               <if test="inOrOut==0">
+                   dest_grid_idx9 as dest_idx,-1 as origin_idx,
+               </if>
+               <if test="inOrOut==1">
+                   origin_grid_idx9 as origin_idx,-1 as dest_idx,
+               </if>
+               COUNT(1) as flow FROM nyc_october_rec WHERE time_interval = #{interval} GROUP BY
+        <if test="inOrOut==0">
+               dest_grid_idx9
+        </if>
+        <if test="inOrOut==1">
+               origin_grid_idx9
+        </if>
+        ORDER BY flow desc;
+    </select>
+</mapper>

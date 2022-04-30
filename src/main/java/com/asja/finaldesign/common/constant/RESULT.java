@@ -3,7 +3,11 @@ package com.asja.finaldesign.common.constant;
 public enum RESULT {
 
     SUCCESS(0,"success"),
-    PARAM_ERROR(-1,"parameter error");
+    PARAM_ERROR(-1,"parameter error"),
+    UN_SUPPORT(-2," unsupport error"),
+    FILE_NOT_FOUNED(-3,"file not found"),
+    IO_ERROR(-4,"io error");
+
 
     private Integer errorCode;
     private String msg;

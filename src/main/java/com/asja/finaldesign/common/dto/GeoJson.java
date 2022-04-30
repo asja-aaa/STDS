@@ -3,6 +3,7 @@ package com.asja.finaldesign.common.dto;
 import com.asja.finaldesign.common.constant.COLOR;
 import com.asja.finaldesign.common.dto.geo.Feature;
 import com.asja.finaldesign.common.dto.geo.Geometry;
+import com.asja.finaldesign.common.dto.geo.Polygon;
 import com.asja.finaldesign.common.dto.geo.Properties;
 import com.uber.h3core.util.GeoCoord;
 import lombok.AllArgsConstructor;
@@ -11,8 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
@@ -24,7 +24,7 @@ public class GeoJson {
     private List<Feature> features;
 
     /**
-     *  odHeatData 转 GeoJson
+     *  含自定义围栏 odHeatData 转 GeoJson
      * @param odInOutHeatDataList
      * @return
      */
@@ -67,13 +67,12 @@ public class GeoJson {
 
     }
 
-
     /**
      * geoCoords 转 GeoJoson
      * @param geoCoords
      * @return
      */
-    public static GeoJson  geoCoordsCovToGeoJson(List<List<GeoCoord>> geoCoords){
+    public static GeoJson  geoCoordsCovToGeoJson(List<Polygon> geoCoords){
         GeoJson geoJson = new GeoJson();
         List<Feature> featureList = new ArrayList<>();
 
@@ -82,7 +81,7 @@ public class GeoJson {
             Geometry<List<List<Float>>> geometry = new Geometry<>();
             geometry.setType("Polygon");
             List<List<Float>> coord = new ArrayList<>();
-            polygons.forEach(item->{
+            polygons.getGeoCoords().forEach(item->{
                 List<Float> li = new ArrayList<Float>(){{
                     add((float) item.lng);
                     add((float) item.lat);
@@ -90,19 +89,69 @@ public class GeoJson {
                 coord.add(li);
             });
             coord.add(new ArrayList<Float>(){{
-                add((float) polygons.get(0).lng);
-                add((float) polygons.get(0).lat);
+                add((float) polygons.getGeoCoords().get(0).lng);
+                add((float) polygons.getGeoCoords().get(0).lat);
             }});
             geometry.setCoordinates(new ArrayList<List<List<Float>>>(){{
                 add(coord);
             }});
 
             feature.setGeometry(geometry);
-            feature.setProperties(new Properties().setFillOpacity(0.0f));
+            feature.setProperties(new Properties().setOriginIdx(polygons.getIdx()));
             featureList.add(feature);
         });
         geoJson.setFeatures(featureList);
         return  geoJson;
+    }
+
+    /**
+     *
+     * @param odInOutHeatDataList
+     * @param list
+     * @param inOrOut 1: 出度  0：入度
+     * @return
+     */
+    public static GeoJson hexagonAddOdHeatDataConvToGeoJson(List<ODInOutHeatData> odInOutHeatDataList,List<Polygon> list,int inOrOut){
+        int len = odInOutHeatDataList.size();
+        int colorSize = COLOR.COLOR_LEVEL_LIST.size();
+        int index = 0;
+        Map<Long,List<GeoCoord>> idxMap = new HashMap<>();
+        list.forEach(i->idxMap.put(i.getIdx(),i.getGeoCoords()));
+        GeoJson ans = new GeoJson();
+        List<Feature> featureList = new ArrayList<>();
+        for (ODInOutHeatData item:odInOutHeatDataList){
+            long idx = inOrOut==0?item.getDestIdx():item.getOriginIdx();
+            if(idxMap.containsKey(idx)){
+                Feature feature = new Feature();
+                Geometry<List<List<Float>>> geometry = new Geometry<>();
+                geometry.setType("Polygon");
+                List<List<Float>> coord = new ArrayList<>();
+                List<GeoCoord> polygons = idxMap.get(idx);
+                polygons.forEach(p->{
+                    List<Float> li = new ArrayList<Float>(){{
+                        add((float) p.lng);
+                        add((float) p.lat);
+                    }};
+                    coord.add(li);
+                });
+                coord.add(new ArrayList<Float>(){{
+                    add((float) polygons.get(0).lng);
+                    add((float) polygons.get(0).lat);
+                }});
+                geometry.setCoordinates(new ArrayList<List<List<Float>>>(){{
+                    add(coord);
+                }});
+                feature.setGeometry(geometry);
+                feature.setProperties(new Properties().setFill(COLOR.COLOR_LEVEL_LIST.get(index/(len/colorSize+1))).setOriginIdx(idx));
+                featureList.add(feature);
+            }
+            index++;
+        }
+
+        ans.setFeatures(featureList);
+        return  ans;
+
+
     }
 
 }

@@ -6,6 +6,8 @@
     <result property="originColId" column="origin_column_id"/>
     <result property="destinationRowId" column="destination_row_id"/>
     <result property="destinationColId" column="destination_column_id"/>
+    <result property="originIdx" column="origin_idx"/>
+    <result property="destIdx" column="dest_idx"/>
     <result property="flow" column="flow"/>
     <result property="coordinates" column="coordinates"/>
 </resultMap>

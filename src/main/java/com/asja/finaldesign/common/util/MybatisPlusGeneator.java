@@ -20,7 +20,7 @@ public class MybatisPlusGeneator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("src/main/java/45454545");
+        gc.setOutputDir("src/main/java/12124554");
         gc.setAuthor("ASJA");
         gc.setOpen(false);
         gc.setSwagger2(true);
@@ -62,7 +62,7 @@ public class MybatisPlusGeneator {
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
-        strategy.setInclude("nyc_tod_gridod".split(","));
+        strategy.setInclude("nyc_october_rec".split(","));
         strategy.setControllerMappingHyphenStyle(true);
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());

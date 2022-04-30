@@ -105,8 +105,8 @@ public class NycTodGridodController {
     public String h3Map(
             @RequestParam(value = "lng",required = false,defaultValue = "-73.9737") Double lng,
             @RequestParam(value = "lat",required = false,defaultValue = "40.7616") Double lat,
-            @RequestParam(value = "zoom",required = false,defaultValue = "15") Integer zoom,
-            @RequestParam(value = "layer",required = false,defaultValue = "10") Integer layer
+            @RequestParam(value = "zoom",required = false,defaultValue = "9") Integer zoom,
+            @RequestParam(value = "layer",required = false,defaultValue = "15") Integer layer
     ){
         GeoJson hexagonsGeoJson = h3Service.getHexagonsGeoJson(lng, lat, zoom, layer);
         return JSON.toJSONString(CommonResult.success(hexagonsGeoJson));
