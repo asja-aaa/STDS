@@ -36,8 +36,4 @@ build/
 
 .mvn/
 
-!/src/main/resources/logs/
-!/src/main/resources/logs/sql.log
-!/src/main/resources/logs/log_warn.log
-!/src/main/resources/logs/log_info.log
-!/src/main/resources/logs/log_error.log
+/src/main/resources/logs/
