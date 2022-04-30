@@ -1,0 +1,124 @@
+2022-04-28 00:49:37.863 [http-nio-7001-exec-4] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/odHeat,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.getInOutFlowHeatData,args=[1, 2, 2, 1]
+2022-04-28 00:50:41.479 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'threadExecutor'
+2022-04-28 00:50:41.481 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-04-28 00:50:41.491 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2022-04-28 12:27:06.765 [main] INFO  com.asja.finaldesign.Application - Starting Application using Java 1.8.0_311 on ASJA-DESKTOP with PID 20056 (D:\old\Learn\finalDesign\workSpace\STDS\target\classes started by 19804 in D:\old\Learn\finalDesign\workSpace\STDS)
+2022-04-28 12:27:06.775 [main] INFO  com.asja.finaldesign.Application - The following profiles are active: dev
+2022-04-28 12:27:08.005 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7001 (http)
+2022-04-28 12:27:08.015 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-7001"]
+2022-04-28 12:27:08.025 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-04-28 12:27:08.025 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.44]
+2022-04-28 12:27:08.155 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-04-28 12:27:08.155 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1350 ms
+2022-04-28 12:27:10.025 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-04-28 12:27:10.025 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'threadExecutor'
+2022-04-28 12:27:10.475 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2022-04-28 12:27:10.505 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-7001"]
+2022-04-28 12:27:10.525 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7001 (http) with context path ''
+2022-04-28 12:27:10.545 [main] INFO  com.asja.finaldesign.Application - Started Application in 4.344 seconds (JVM running for 6.021)
+2022-04-28 12:27:12.065 [RMI TCP Connection(4)-10.128.240.208] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-28 12:27:12.075 [RMI TCP Connection(4)-10.128.240.208] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-04-28 12:27:12.075 [RMI TCP Connection(5)-10.128.240.208] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-04-28 12:27:12.075 [RMI TCP Connection(4)-10.128.240.208] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2022-04-28 12:27:13.305 [RMI TCP Connection(5)-10.128.240.208] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-04-28 12:27:28.321 [http-nio-7001-exec-1] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/divide,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.H3PolygonDivide,args=[[40.8167;-73.9634, 40.7990;-73.9174, 40.6924;-73.9936, 40.7106;-74.0393], 9]
+2022-04-28 12:28:02.339 [http-nio-7001-exec-3] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/h3,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.h3Map,args=[-73.9737, 40.7616, 15, 10]
+2022-04-28 12:29:03.058 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'threadExecutor'
+2022-04-28 12:29:03.068 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-04-28 12:29:03.078 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2022-04-28 12:29:08.695 [main] INFO  com.asja.finaldesign.Application - Starting Application using Java 1.8.0_311 on ASJA-DESKTOP with PID 2456 (D:\old\Learn\finalDesign\workSpace\STDS\target\classes started by 19804 in D:\old\Learn\finalDesign\workSpace\STDS)
+2022-04-28 12:29:08.705 [main] INFO  com.asja.finaldesign.Application - The following profiles are active: dev
+2022-04-28 12:29:09.605 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7001 (http)
+2022-04-28 12:29:09.615 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-7001"]
+2022-04-28 12:29:09.615 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-04-28 12:29:09.615 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.44]
+2022-04-28 12:29:09.715 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-04-28 12:29:09.715 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 990 ms
+2022-04-28 12:29:11.295 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-04-28 12:29:11.295 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'threadExecutor'
+2022-04-28 12:29:11.705 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2022-04-28 12:29:11.735 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-7001"]
+2022-04-28 12:29:11.745 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7001 (http) with context path ''
+2022-04-28 12:29:11.755 [main] INFO  com.asja.finaldesign.Application - Started Application in 3.427 seconds (JVM running for 4.804)
+2022-04-28 12:29:11.935 [RMI TCP Connection(1)-10.128.240.208] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-28 12:29:11.935 [RMI TCP Connection(1)-10.128.240.208] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-04-28 12:29:11.935 [RMI TCP Connection(1)-10.128.240.208] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2022-04-28 12:29:13.215 [RMI TCP Connection(3)-10.128.240.208] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-04-28 12:29:14.145 [RMI TCP Connection(3)-10.128.240.208] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-04-28 12:29:19.877 [http-nio-7001-exec-1] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/h3,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.h3Map,args=[-73.9737, 40.7616, 12, 15]
+2022-04-28 12:30:05.077 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'threadExecutor'
+2022-04-28 12:30:05.077 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-04-28 12:30:05.087 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2022-04-28 12:30:10.811 [main] INFO  com.asja.finaldesign.Application - Starting Application using Java 1.8.0_311 on ASJA-DESKTOP with PID 16244 (D:\old\Learn\finalDesign\workSpace\STDS\target\classes started by 19804 in D:\old\Learn\finalDesign\workSpace\STDS)
+2022-04-28 12:30:10.821 [main] INFO  com.asja.finaldesign.Application - The following profiles are active: dev
+2022-04-28 12:30:11.751 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7001 (http)
+2022-04-28 12:30:11.761 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-7001"]
+2022-04-28 12:30:11.761 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-04-28 12:30:11.761 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.44]
+2022-04-28 12:30:11.851 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-04-28 12:30:11.851 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1000 ms
+2022-04-28 12:30:13.411 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-04-28 12:30:13.411 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'threadExecutor'
+2022-04-28 12:30:13.801 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2022-04-28 12:30:13.831 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-7001"]
+2022-04-28 12:30:13.841 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7001 (http) with context path ''
+2022-04-28 12:30:13.851 [main] INFO  com.asja.finaldesign.Application - Started Application in 3.472 seconds (JVM running for 4.97)
+2022-04-28 12:30:14.641 [RMI TCP Connection(2)-10.128.240.208] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-28 12:30:14.641 [RMI TCP Connection(2)-10.128.240.208] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-04-28 12:30:14.641 [RMI TCP Connection(2)-10.128.240.208] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2022-04-28 12:30:14.651 [RMI TCP Connection(1)-10.128.240.208] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-04-28 12:30:15.771 [RMI TCP Connection(1)-10.128.240.208] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-04-28 12:30:26.636 [http-nio-7001-exec-1] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/h3,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.h3Map,args=[-73.9737, 40.7616, 9, 15]
+2022-04-28 12:32:22.744 [http-nio-7001-exec-8] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/h3,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.h3Map,args=[116.399623, 39.905743, 9, 15]
+2022-04-28 12:33:44.849 [http-nio-7001-exec-7] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/h3,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.h3Map,args=[116.399623, 39.905743, 8, 20]
+2022-04-28 12:35:00.865 [http-nio-7001-exec-10] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/h3,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.h3Map,args=[116.399623, 39.905743, 9, 15]
+2022-04-28 12:35:50.294 [http-nio-7001-exec-1] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/h3,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.h3Map,args=[116.399623, 39.905743, 7, 15]
+2022-04-28 12:39:24.307 [http-nio-7001-exec-8] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/h3,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.h3Map,args=[116.399623, 39.905743, 8, 30]
+2022-04-28 12:43:13.556 [http-nio-7001-exec-7] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/divide,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.H3PolygonDivide,args=[[40.8167;-73.9634, 40.7990;-73.9174, 40.6924;-73.9936, 40.7106;-74.0393], 9]
+2022-04-28 14:15:16.301 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'threadExecutor'
+2022-04-28 14:15:16.301 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-04-28 14:15:16.301 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2022-04-28 14:15:21.914 [main] INFO  com.asja.finaldesign.Application - Starting Application using Java 1.8.0_311 on ASJA-DESKTOP with PID 25408 (D:\old\Learn\finalDesign\workSpace\STDS\target\classes started by 19804 in D:\old\Learn\finalDesign\workSpace\STDS)
+2022-04-28 14:15:21.914 [main] INFO  com.asja.finaldesign.Application - The following profiles are active: dev
+2022-04-28 14:15:22.895 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7001 (http)
+2022-04-28 14:15:22.895 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-7001"]
+2022-04-28 14:15:22.895 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-04-28 14:15:22.895 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.44]
+2022-04-28 14:15:22.993 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-04-28 14:15:22.993 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1048 ms
+2022-04-28 14:15:24.626 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-04-28 14:15:24.626 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'threadExecutor'
+2022-04-28 14:15:25.046 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2022-04-28 14:15:25.066 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-7001"]
+2022-04-28 14:15:25.076 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7001 (http) with context path ''
+2022-04-28 14:15:25.094 [main] INFO  com.asja.finaldesign.Application - Started Application in 3.573 seconds (JVM running for 4.966)
+2022-04-28 14:15:26.056 [RMI TCP Connection(1)-10.128.240.208] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-28 14:15:26.056 [RMI TCP Connection(1)-10.128.240.208] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-04-28 14:15:26.056 [RMI TCP Connection(1)-10.128.240.208] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2022-04-28 14:15:26.056 [RMI TCP Connection(2)-10.128.240.208] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-04-28 14:15:27.097 [RMI TCP Connection(2)-10.128.240.208] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-04-28 14:15:40.443 [http-nio-7001-exec-1] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/h3,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.h3Map,args=[116.399623, 39.905743, 8, 30]
+2022-04-28 14:17:06.345 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'threadExecutor'
+2022-04-28 14:17:06.346 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-04-28 14:17:06.356 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2022-04-28 14:17:11.815 [main] INFO  com.asja.finaldesign.Application - Starting Application using Java 1.8.0_311 on ASJA-DESKTOP with PID 23624 (D:\old\Learn\finalDesign\workSpace\STDS\target\classes started by 19804 in D:\old\Learn\finalDesign\workSpace\STDS)
+2022-04-28 14:17:11.815 [main] INFO  com.asja.finaldesign.Application - The following profiles are active: dev
+2022-04-28 14:17:12.725 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 7001 (http)
+2022-04-28 14:17:12.735 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-7001"]
+2022-04-28 14:17:12.735 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-04-28 14:17:12.735 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.44]
+2022-04-28 14:17:12.825 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-04-28 14:17:12.825 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 980 ms
+2022-04-28 14:17:14.375 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService
+2022-04-28 14:17:14.375 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'threadExecutor'
+2022-04-28 14:17:14.775 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2022-04-28 14:17:14.805 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-7001"]
+2022-04-28 14:17:14.815 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 7001 (http) with context path ''
+2022-04-28 14:17:14.825 [main] INFO  com.asja.finaldesign.Application - Started Application in 3.391 seconds (JVM running for 4.77)
+2022-04-28 14:17:16.355 [RMI TCP Connection(3)-10.128.240.208] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-28 14:17:16.355 [RMI TCP Connection(3)-10.128.240.208] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-04-28 14:17:16.355 [RMI TCP Connection(3)-10.128.240.208] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2022-04-28 14:17:16.365 [RMI TCP Connection(2)-10.128.240.208] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-04-28 14:17:17.325 [RMI TCP Connection(2)-10.128.240.208] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-04-28 14:17:22.675 [http-nio-7001-exec-1] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/h3,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.h3Map,args=[116.399623, 39.905743, 8, 30]
+2022-04-28 14:18:20.008 [http-nio-7001-exec-3] INFO  com.asja.finaldesign.config.LogAspect - url=/nyc-tod-gridod/h3,method=GET,ip=0:0:0:0:0:0:0:1,class_method=com.asja.finaldesign.controller.NycTodGridodController.h3Map,args=[116.399623, 39.905743, 9, 30]
